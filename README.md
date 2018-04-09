@@ -1,3 +1,30 @@
+This is my version of https://github.com/freshstudio/Toshinou
+Although no bans have been issued yet, <b>use at your own risk!!!</b>
+<b>I am not responsible if you get banned!</b>
+
+<b>To-Do</b>:
+  - Re-design ugly menu.
+  - Save menu settings.
+  - Add start button/stop.
+  - Improve NPC Killing and Boxing algorithm.
+  - Improve Circle algorithm.
+  - Improve map travelling algorithm.
+  - Fix drawing smaller/bigger maps.
+  - Fix clicking on map to move.
+  - Add different NPC prioritizing.
+  - Add player name sniping ;) In case you want to lock on someone specific couse why not ;)
+  - Add booty boxes collector.
+  - AND SO MUCH FUCKING MORE HOLY SHIT! XD
+<b>Changelog</b>:
+  - Fixed: Exclude NPCs list too small from 100px to 200px;
+  - Added: Demaner and Devourer NPCs to exclude NPCs list.
+  - Added: Option to exclude NPCs for autolock key.
+  - Added: Option to auto attack Player and/or NPC after pressing autolock key.
+  - Fixed: Browser resizing when moving windows in corner.
+  - Added: Option to not chase NPC.
+
+
+
 Toshinou
 ==========
 A cheat/tool/bot/whatever for a browser flash game named DarkOrbit.

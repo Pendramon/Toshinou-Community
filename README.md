@@ -34,22 +34,33 @@ For more information join the Discord! https://discordapp.com/invite/6awg2te
 
 How to install/use?
 ----------
-### Firefox
-1. ~~Install the addon through about:debugging panel~~
-2. ~~Use any web proxy to replace the main.swf and preloader.swf~~
-3. ~~Enjoy!~~
-
-Support for Firefox has been dropped.
 
 ### Chrome/Chromium
-1. Download and extract it
-2. Open any web proxy and locate the options
-3. Enable HTTPS decryption (you maybe have to trust the certification and restart the proxy)
-4. Install the addon through chrome://extensions
-5. Use any web proxy to replace the main.swf and preloader.swf
-6. Enjoy!
+1. Click on Clone or download > Download ZIP
+2. Extract the archive
+3. Install Fiddler
+4. Enable in Fiddler > Tools > Options > HTTPS > Capture HTTPS CONNECTs
+5. Enable in Fiddler > Tools > Options > HTTPS > Decrypt HTTPS traffic
+6. Enable in Fiddler > AutoResponder > Enable Rules
+7. Enable in Fiddler > AutoResponder > Unmatched requests passthrough 
+8. Add rule in Fiddler > AutoResponder > Add Rule > Name it main.swf and in the second text box choose Find a file
+> Select main.swf located in the SWF folder where you extracted the archive
+9. Add rule in Fiddler > AutoResponder > Add Rule > Name it preloader.swf and in the second text box choose Find a file
+> Select preloader.swf located in the SWF folder where you extracted the archive
+10. Export certificate in Fiddler > Tools > Options > HTTPS > Actions > Export Root Certificate to Desktop
+11. In Chrome > Settings > Manage certificates > Import > Next > Browse > Select FiddlerRoot.cer from desktop 
+> Automatically select the certificate based on the type of certificate > Finish
+12. Enable in Chrome > Extensions > Developer Mode
+13. Add extension in Chrome > Extensions > Load Unpacked Extension > Select the src folder located where you extracted the archive
+14. Enable in incognito in Chrome > Extensions > Toshinou-Pendramon > Allow in Incognito
+15. Start darkorbit in incognito tab.
+16. DONE
+
+<b>NOTE</b>: After a while Fiddler will begin to consume more memory to stop this from happening either close it after you
+load into game or in Fiddler > Keep: All sessions > Set it to Keep: 100 sessions
 
 Issues
 ----------
+Some extensions might interfere with Fiddler if you have any try disabling them all.
 If the tool doesn't work, try to use Private mode/Incognito.
 Other situations should be reported in [issues](../../issues) (game updates are fine there too).

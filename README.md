@@ -1,5 +1,5 @@
-This is my version of https://github.com/freshstudio/Toshinou
-Although no bans have been issued yet, <b>use at your own risk!!!</b>
+This is my version of https://github.com/freshstudio/Toshinou <br>
+Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
 <b>I am not responsible if you get banned!</b>
 
 <b>To-Do</b>:
@@ -61,6 +61,6 @@ load into game or in Fiddler > Keep: All sessions > Set it to Keep: 100 sessions
 
 Issues
 ----------
-Some extensions might interfere with Fiddler if you have any try disabling them all.
-If the tool doesn't work, try to use Private mode/Incognito.
+Some extensions might interfere with Fiddler if you have any try disabling them all. <br>
+If the tool doesn't work, try to use Private mode/Incognito. <br>
 Other situations should be reported in [issues](../../issues) (game updates are fine there too).

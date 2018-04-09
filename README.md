@@ -43,13 +43,13 @@ How to install/use?
 5. Enable in Fiddler > Tools > Options > HTTPS > Decrypt HTTPS traffic
 6. Enable in Fiddler > AutoResponder > Enable Rules
 7. Enable in Fiddler > AutoResponder > Unmatched requests passthrough 
-8. Add rule in Fiddler > AutoResponder > Add Rule > Name it main.swf and in the second text box choose Find a file
-> Select main.swf located in the SWF folder where you extracted the archive
-9. Add rule in Fiddler > AutoResponder > Add Rule > Name it preloader.swf and in the second text box choose Find a file
-> Select preloader.swf located in the SWF folder where you extracted the archive
+8. Add rule in Fiddler > AutoResponder > Add Rule > Name it main.swf and in the second text box choose Find a file >
+ Select main.swf located in the SWF folder where you extracted the archive
+9. Add rule in Fiddler > AutoResponder > Add Rule > Name it preloader.swf and in the second text box choose Find a file >
+ Select preloader.swf located in the SWF folder where you extracted the archive
 10. Export certificate in Fiddler > Tools > Options > HTTPS > Actions > Export Root Certificate to Desktop
-11. In Chrome > Settings > Manage certificates > Import > Next > Browse > Select FiddlerRoot.cer from desktop 
-> Automatically select the certificate based on the type of certificate > Finish
+11. In Chrome > Settings > Manage certificates > Import > Next > Browse > Select FiddlerRoot.cer from desktop >
+ Automatically select the certificate based on the type of certificate > Finish
 12. Enable in Chrome > Extensions > Developer Mode
 13. Add extension in Chrome > Extensions > Load Unpacked Extension > Select the src folder located where you extracted the archive
 14. Enable in incognito in Chrome > Extensions > Toshinou-Pendramon > Allow in Incognito

@@ -21,7 +21,24 @@ class WindowFactory {
         }).appendTo(window.mainFrameWindow);
       }
 
+      const statusBtn = jQuery('<button>', {
+        class: 'btn',
+        text: window.settings.status ? 'Stop' : 'Start',
+      }).css({
+        'position': 'relative',
+        'top': '-5px',
+        'width': '75px',
+        'height': '29px',
+        'margin-right': '31px',
+        'line-height': '16px',
+        'font-size': '16px',
+        'float': 'right',
+      }).appendTo('.header');
 
+      jQuery(statusBtn).on('click', () => {
+        window.settings.status = !window.settings.status;
+        window.settings.status ? $(statusBtn).text('Stop') : $(statusBtn).text('Start');
+      });
     }
 
     if (window.globalSettings.windowsToTabs) {

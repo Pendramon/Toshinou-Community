@@ -135,6 +135,8 @@ function init() {
 }
 
 function logic() {
+  window.minimap.draw();
+
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
@@ -144,7 +146,8 @@ function logic() {
   if (api.heroDied && api.isDisconected)
     return;
 
-  window.minimap.draw();
+  if (!window.settings.status)
+    return
 
   if (window.settings.npcDontChase && window.settings.killNpcs) {
     setTimeout(() => {

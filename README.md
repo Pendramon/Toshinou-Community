@@ -1,4 +1,5 @@
 This is my version of https://github.com/freshstudio/Toshinou <br>
+Join my discord for questions, answers and just cheeky breeky talk https://discord.gg/hqf76ht<br>
 Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
 <b>I am not responsible if you get banned!</b>
 

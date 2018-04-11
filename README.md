@@ -2,10 +2,12 @@ This is my version of https://github.com/freshstudio/Toshinou <br>
 Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
 <b>I am not responsible if you get banned!</b>
 
+<b>Coming Soon</b>:
+  - Better and overhauled logic ;)
+
 <b>To-Do</b>:
   - Re-design ugly menu.
   - Save menu settings.
-  - Add start button/stop.
   - Improve NPC Killing and Boxing algorithm.
   - Improve Circle algorithm.
   - Improve map travelling algorithm.
@@ -17,8 +19,10 @@ Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
   - AND SO MUCH MORE! XD
 
 <b>Changelog</b>:
+  - Changed: Exclude NPCs list to even bigger from 200px to 300px.
+  - Added: More enemies to the exclude NPCs list not sure if all are correct but better safe than sorry. (Report Problems)
   - Added: Start/Stop button.
-  - Fixed: Exclude NPCs list too small from 100px to 200px;
+  - Fixed: Exclude NPCs list too small from 100px to 200px.
   - Added: Demaner and Devourer NPCs to exclude NPCs list.
   - Added: Option to exclude NPCs for autolock key.
   - Added: Option to auto attack Player and/or NPC after pressing autolock key.

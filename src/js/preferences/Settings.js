@@ -3,7 +3,7 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, npcDontChase, status) {
+  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, /*npcDontChase,*/ status, flee) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
     this._moveRandomly = moveRandomly === true;
@@ -13,11 +13,12 @@ class Settings {
     this._autoAttack = autoAttack === true;
     this._autoAttackNpcs = autoAttackNpcs === true;
     this._killNpcs = killNpcs === true;
-    this._npcDontChase = npcDontChase === true;
     this._npcs = [];
-    this.npcCircleRadius = 500;
+    /*this._npcDontChase = npcDontChase === true;
+    this.npcCircleRadius = 500;*/
     this.reviveLimit = 5;
     this._status = status === true;
+    this._flee = flee === true;
   }
 
   get status() {
@@ -26,6 +27,14 @@ class Settings {
 
   set status(value) {
     this._status = value === true;
+  }
+
+  get flee() {
+    return this._flee;
+  }
+
+  set flee(value) {
+    this._flee = value === true;
   }
 
   get collectBoxes() {

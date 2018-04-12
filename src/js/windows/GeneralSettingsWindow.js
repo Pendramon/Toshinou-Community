@@ -34,6 +34,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'flee',
+        labelText: 'Flee from enemy',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.flee = this.checked;
+        }
+      },
+      {
         name: 'npcKiller',
         labelText: 'Kill NPCs',
         appendTo: this.botSettingsWindow,
@@ -41,6 +49,7 @@ class GeneralSettingsWindow {
           window.settings.killNpcs = this.checked;
         }
       },
+      /*
       {
         name: 'npcDontChase',
         labelText: 'Don\'t chase NPCs (Beta)',
@@ -99,7 +108,7 @@ class GeneralSettingsWindow {
         event: function () {
           window.settings.dontCircleWhenHpBelow15Percent = this.checked;
         }
-      },
+      },*/
       {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: ' Repair when HP < <span> (10%)</span>',

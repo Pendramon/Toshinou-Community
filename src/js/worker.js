@@ -133,11 +133,35 @@ function logic() {
     return
   }
 
+  // TODO: Add check if hero shield is regenerated
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
+    let gate = api.findNearestGate();
+    if (gate.gate && window.hero.position.x != gate.gate.position.x || window.hero.position.y != gate.gate.position.y) {
+      let x = gate.gate.position.x;
+      let y = gate.gate.position.y;
+      api.move(x, y);
+      window.movementDone = false;
+    }
     window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
+  }
+
+  if ((MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) && (!api.targetShip || api.targetShip.percentOfHp > 10)) {
+    let gate = api.findNearestGate();
+    if (gate.gate) {
+      let x = gate.gate.position.x;
+      let y = gate.gate.position.y;
+      api.targetShip = null;
+      api.attacking = false;
+      api.triedToLock = false;
+      api.lockedShip = null;
+      api.targetBoxHash = null;
+      api.move(x, y);
+      window.movementDone = false;
+      api.isRepairing = true;
+    }
   }
 
   var box = api.findNearestBox();

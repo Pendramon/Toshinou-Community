@@ -87,12 +87,16 @@ class Api {
       var dist = box.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        if ((box.isCollectable() && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
+        if (window.settings.collectBoxes && box.isCollectable()) {
+          finalBox = box;
+          minDist = dist;
+        } else if (window.settings.collectMaterials && box.isMaterial()) {
           finalBox = box;
           minDist = dist;
         }
       }
     }
+
     return {
       box: finalBox,
       distance: minDist

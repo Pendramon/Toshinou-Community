@@ -26,7 +26,7 @@ class ShipCreateHandler {
           api.move(x, y);
           window.movementDone = false;
           window.running = true;
-          console.log("RUNNING TO " + x + ", " + y);
+          console.log("ENEMY SHIP DETECTED - RUNNING TO x=" + x + ", y=" + y + "; PAUSING FOR 3 MINUTES");
           setTimeout(() => {
             window.movementDone = true;
             window.running = false;

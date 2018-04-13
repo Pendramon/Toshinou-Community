@@ -1,15 +1,16 @@
 This is my version of https://github.com/freshstudio/Toshinou <br>
 Join my discord for questions, answers and just cheeky breeky talk https://discord.gg/hqf76ht<br>
 Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
-<b>I am not responsible if you get banned!</b>
+<b>I am NOT responsible if you get banned!</b> <br>
+<b>WHEN UPDATING SECURITY CHECKS ARE NOT DONE, BOT IS ONLY TESTED TO WORK</b><br>
 
-<b>Coming Soon</b>:
-  - Better and overhauled logic ;)
+<b>==========</b><br>
+
+New logic implemented prematurely for new boxes if you run into any problems open up an issue or post in discord <br>
 
 <b>To-Do</b>:
   - Re-design ugly menu.
   - Save menu settings.
-  - Improve NPC Killing and Boxing algorithm.
   - Improve Circle algorithm.
   - Improve map travelling algorithm.
   - Fix drawing smaller/bigger maps.
@@ -20,6 +21,10 @@ Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
   - AND SO MUCH MORE! XD
 
 <b>Changelog</b>:
+  - Update: Updated to latest game version.
+  - Added: New event boxes YURIS BONUS BOX
+  - Added: New logic overhaul, not complete missing Circle NPCs and  Don't chase NPCs. Now collects near-by boxes when fighting! To gain most out of the new logic farm NPCs which you can kill in a few shots!
+  - Changed: Locking/Attacking/Switching targets is now faster!
   - Changed: Exclude NPCs list to even bigger from 200px to 300px.
   - Added: More enemies to the exclude NPCs list not sure if all are correct but better safe than sorry. (Report Problems)
   - Added: Start/Stop button.

@@ -143,15 +143,12 @@ function logic() {
   var box = api.findNearestBox();
   var ship = api.findNearestShip();
 
-  if ((window.settings.collectBox || window.settings.collectMaterials) && box.box) {
+  if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
     if (api.targetBoxHash == null && (ship.distance > 900 || !window.settings.killNpcs)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
     }
-    if (api.lockedShip) {
-      api.lockedShip.update();
-    }
-    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 15 && ( /*api.lockedShip.distance < 300 && box.box.distance < 400 || */ api.lockedShip.distanceTo(box.box.position) < 650))) {
+    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 15 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
       api.collectBox(box.box);
       api.targetBoxHash = null;
       window.dispatchEvent(new CustomEvent("logicEnd"));

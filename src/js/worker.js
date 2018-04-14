@@ -89,16 +89,16 @@ function init() {
   window.setInterval(logic, window.globalSettings.timerTick);
 
   $(document).keypress(function keyLock(e) {
-    var key = e.key;
+    let key = e.key;
 
     if (key == "x" || key == "z") {
-      var maxDist = 1000;
-      var finDist = 1000000;
-      var finalShip;
+      let maxDist = 1000;
+      let finDist = 1000000;
+      let finalShip;
 
-      for (var property in api.ships) {
-        var ship = api.ships[property];
-        var dist = ship.distanceTo(window.hero.position);
+      for (let property in api.ships) {
+        let ship = api.ships[property];
+        let dist = ship.distanceTo(window.hero.position);
 
         if ((ship.isNpc && window.settings.lockNpc && key == "x" && dist < maxDist && dist < finDist && (!window.settings.excludeNpcs || window.settings.getNpc(ship.name))) || (!ship.isNpc && ship.isEnemy && window.settings.lockPlayers && key == "z")) {
           finalShip = ship;
@@ -148,7 +148,7 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if ((MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) && (!api.targetShip || api.targetShip.percentOfHp > 10)) {
+  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
     let gate = api.findNearestGate();
     if (gate.gate) {
       let x = gate.gate.position.x;
@@ -164,8 +164,8 @@ function logic() {
     }
   }
 
-  var box = api.findNearestBox();
-  var ship = api.findNearestShip();
+  let box = api.findNearestBox();
+  let ship = api.findNearestShip();
 
   if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
     if (api.targetBoxHash == null && (ship.distance > 900 || !window.settings.killNpcs)) {

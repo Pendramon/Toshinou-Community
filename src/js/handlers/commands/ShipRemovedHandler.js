@@ -4,7 +4,7 @@ Created by Freshek on 24.10.2017
 
 class ShipRemovedHandler {
   static get ID() {
-    return 3650;
+    return 719;
   }
 
   constructor() {

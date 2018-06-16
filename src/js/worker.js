@@ -133,8 +133,7 @@ function logic() {
     return
   }
 
-  // TODO: Add check if hero shield is regenerated
-  if (api.isRepairing && window.hero.hp !== window.hero.maxHp  && window.hero.shd !== window.hero.maxShd) {
+  if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
     let gate = api.findNearestGate();
     if (gate.gate && window.hero.position.x != gate.gate.position.x || window.hero.position.y != gate.gate.position.y) {
       let x = gate.gate.position.x;

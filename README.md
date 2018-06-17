@@ -2,7 +2,6 @@ Community version of https://github.com/freshstudio/Toshinou <br>
 Join our discord for questions, answers and just cheeky breeky talk https://discord.gg/hqf76ht<br>
 Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
 <b>We are not responsible if you get banned!</b> <br>
-<b>WHEN UPDATING SECURITY CHECKS ARE NOT DONE, BOT IS ONLY TESTED TO WORK</b><br>
 
 <b>==========</b><br>
 

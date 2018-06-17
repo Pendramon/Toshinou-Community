@@ -42,6 +42,8 @@
       "js/handlers/HandlersManager.js",
       "js/handlers/events/MovementDoneEventHandler.js",
       "js/handlers/events/HeroPositionUpdateEventHandler.js",
+      "js/handlers/events/HeroConnectedEventHandler.js",
+      "js/handlers/events/HeroDisconnectedEventHandler.js",
       "js/handlers/commands/BoxInitHandler.js",
       "js/handlers/commands/ShipAttackHandler.js",
       "js/handlers/commands/ShipCreateHandler.js",

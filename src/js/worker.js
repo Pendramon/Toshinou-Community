@@ -58,6 +58,8 @@ $(document).ready(function () {
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
+  hm.registerEvent("isConnected", new HeroConnectedEventHandler());
+  hm.registerEvent("isDisconnected", new HeroDisconnectedEventHandler());
 
   hm.listen();
 });
@@ -116,11 +118,27 @@ function init() {
 }
 
 function logic() {
-  window.minimap.draw();
 
-  if (api.heroDied && api.isDisconected) {
+  if (api.heroDied) {
     window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
+  }
+
+  window.minimap.draw();
+  
+  if (api.isDisconnected) {
+    if (window.fleeingFromEnemy) {
+      window.fleeFromEnemy = false;
+    }
+    if (api.disconnectTime && $.now() - api.disconnectTime > 10000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000))) {
+      api.reconnect();
+    }
+    return;
+  }
+
+  if (!window.settings.status) {
+    window.dispatchEvent(new CustomEvent("logicEnd"));
+    return
   }
 
   if (window.settings.flee && window.running) {
@@ -133,8 +151,7 @@ function logic() {
     return
   }
 
-  // TODO: Add check if hero shield is regenerated
-  if (api.isRepairing && window.hero.hp !== window.hero.maxHp  && window.hero.shd !== window.hero.maxShd) {
+  if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
     let gate = api.findNearestGate();
     if (gate.gate && window.hero.position.x != gate.gate.position.x || window.hero.position.y != gate.gate.position.y) {
       let x = gate.gate.position.x;

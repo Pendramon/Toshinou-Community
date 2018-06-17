@@ -9,6 +9,7 @@ class Api {
     this.ships = {};
     this.lastMovement = 0;
     this.isDisconected = false;
+    this.reconnectTime = $.now();
   }
 
   lockShip(ship) {
@@ -60,6 +61,11 @@ class Api {
     }
   }
 
+  reconnect() {
+    Injector.injectScript('document.getElementById("preloader").reconnect();');
+    this.reconnectTime = $.now();
+  }
+  
   blackListHash(hash) {
     this._blackListedBoxes.push(hash);
   }

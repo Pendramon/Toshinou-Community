@@ -47,8 +47,8 @@ class WindowFactory {
           api.attacking = false;
           api.triedToLock = false;
           api.lockedShip = null;
-          window.fleeFromEnemy = null;
-          window.fleeingFromEnemy = null;
+          window.fleeingFromEnemy = false;
+          window.fleeingGate = null;
         } 
       });
     }

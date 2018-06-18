@@ -118,7 +118,6 @@ function init() {
 function logic() {
 
   if (api.heroDied) {
-    window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
   }
 
@@ -135,17 +134,14 @@ function logic() {
   }
 
   if (!window.settings.status) {
-    window.dispatchEvent(new CustomEvent("logicEnd"));
     return
   }
 
   if (window.settings.flee && window.running) {
-    window.dispatchEvent(new CustomEvent("logicEnd"));
     return
   }
 
   if (!window.settings.status) {
-    window.dispatchEvent(new CustomEvent("logicEnd"));
     return
   }
 
@@ -157,7 +153,6 @@ function logic() {
       api.move(x, y);
       window.movementDone = false;
     }
-    window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
@@ -190,7 +185,6 @@ function logic() {
     if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 15 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
       api.collectBox(box.box);
       api.targetBoxHash = null;
-      window.dispatchEvent(new CustomEvent("logicEnd"));
       return;
     }
   }
@@ -201,20 +195,17 @@ function logic() {
         api.lockShip(ship.ship);
         api.triedToLock = true;
         api.targetShip = ship.ship;
-        window.dispatchEvent(new CustomEvent("logicEnd"));
         return;
       } else if (api.targetShip != null && api.targetShip != ship.ship && api.targetBoxHash == null) {
         api.targetShip.update();
         let dist = api.targetShip.distanceTo(window.hero.position);
         if (dist > 250) {
           api.move(api.targetShip.position.x - MathUtils.random(-100, 100), api.targetShip.position.y - MathUtils.random(-100, 100))
-          window.dispatchEvent(new CustomEvent("logicEnd"));
           return;
         }
       } else if (ship.distance > 350 && api.targetBoxHash == null) {
         ship.ship.update();
         api.move(ship.ship.position.x - MathUtils.random(-100, 100), ship.ship.position.y - MathUtils.random(-100, 100));
-        window.dispatchEvent(new CustomEvent("logicEnd"));
         return;
       }
       //Failsafe in case attacking gets stuck
@@ -234,5 +225,4 @@ function logic() {
     window.movementDone = false;
   }
 
-  window.dispatchEvent(new CustomEvent("logicEnd"));
 }

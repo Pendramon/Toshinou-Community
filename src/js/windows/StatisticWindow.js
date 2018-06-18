@@ -145,7 +145,7 @@ class StatisticWindow {
       this.connected = e.detail.connected;
     });
 
-    $(window).on('logicEnd', () => {
+    window.setInterval(() => {
       if (this.connected) {
 
         if (window.globalSettings.showRuntime) {
@@ -154,7 +154,7 @@ class StatisticWindow {
 
         $('span:last-child', this.speed).text(this.speedFormat(this.stats.uridium, this.stats.startTime));
       }
-    });
+    }), window.globalSettings.timerTick);
   }
 
   speedFormat(uri, startTime) {

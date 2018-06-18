@@ -178,7 +178,7 @@ function logic() {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
     }
-    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 15 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
+    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
       api.collectBox(box.box);
       api.targetBoxHash = null;
       return;

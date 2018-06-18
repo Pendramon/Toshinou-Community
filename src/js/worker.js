@@ -137,11 +137,7 @@ function logic() {
     return
   }
 
-  if (window.settings.flee && window.running) {
-    return
-  }
-
-  if (!window.settings.status) {
+  if (window.settings.flee && window.fleeingFromEnemy) {
     return
   }
 

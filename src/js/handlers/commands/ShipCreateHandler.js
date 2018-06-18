@@ -25,11 +25,11 @@ class ShipCreateHandler {
           api.targetBoxHash = null;
           api.move(x, y);
           window.movementDone = false;
-          window.running = true;
+          window.fleeingFromEnemy = true;
           console.log("ENEMY SHIP DETECTED - RUNNING TO x=" + x + ", y=" + y + "; PAUSING FOR 3 MINUTES");
           setTimeout(() => {
             window.movementDone = true;
-            window.running = false;
+            window.fleeingFromEnemy = false;
           }, 180000);
         }
       }

@@ -36,8 +36,20 @@ class WindowFactory {
       }).appendTo('.header');
 
       jQuery(statusBtn).on('click', () => {
-        window.settings.status = !window.settings.status;
-        window.settings.status ? $(statusBtn).text('Stop') : $(statusBtn).text('Start');
+        if (window.settings.status) {
+          window.settings.status = false;
+          $(statusBtn).text('Start');
+        } else {
+          window.settings.status = true;
+          $(statusBtn).text('Stop');
+          api.targetBoxHash = null;
+          api.targetShip = null;
+          api.attacking = false;
+          api.triedToLock = false;
+          api.lockedShip = null;
+          window.fleeFromEnemy = null;
+          window.fleeingFromEnemy = null;
+        } 
       });
     }
 

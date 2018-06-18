@@ -17,6 +17,8 @@ class HeroDiedHandler {
           Injector.injectScript("document.getElementById('preloader').revive(1);");
           window.reviveCount++;
           a.isRepairing = true;
+          window.fleeingGate = null;
+          window.fleeingFromEnemy = null;
         }
       }, 8000);
     }

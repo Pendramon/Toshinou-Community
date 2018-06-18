@@ -1,12 +1,11 @@
-This is my version of https://github.com/freshstudio/Toshinou <br>
-Join my discord for questions, answers and just cheeky breeky talk https://discord.gg/hqf76ht<br>
+Community version of https://github.com/freshstudio/Toshinou <br>
+Join our discord for questions, answers and just cheeky breeky talk https://discord.gg/hqf76ht<br>
 Although no bans have been issued yet, <b>use at your own risk!!!</b> <br>
-<b>I am NOT responsible if you get banned!</b> <br>
-<b>WHEN UPDATING SECURITY CHECKS ARE NOT DONE, BOT IS ONLY TESTED TO WORK</b><br>
+<b>We are not responsible if you get banned!</b> <br>
 
 <b>==========</b><br>
 
-New logic implemented prematurely for new boxes if you run into any problems open up an issue or post in discord <br>
+New logic implemented prematurely for new boxes if you run into any problems open up an issue or post in discord for a faster response<br>
 
 <b>To-Do</b>:
   - Re-design ugly menu.

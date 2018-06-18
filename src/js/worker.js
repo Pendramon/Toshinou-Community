@@ -150,7 +150,7 @@ function logic() {
       
       for (let property in api.ships) {
         let ship = api.ships[property];
-        if (ship.isNpc && ship.isEnemy) {
+        if (!ship.isNpc && ship.isEnemy) {
           window.fleeingFromEnemy = true;
           api.targetShip = null;
           api.attacking = false;

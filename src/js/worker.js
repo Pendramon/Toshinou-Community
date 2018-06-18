@@ -173,6 +173,17 @@ function logic() {
   let box = api.findNearestBox();
   let ship = api.findNearestShip();
 
+  if (api.targetBoxHash && $.now() - api.collectTime > 5000) {
+    let box = api.boxes[api.targetBoxHash];
+    if (box && box.distanceTo(window.hero.position) > 1000) {
+      api.collectTime = $.now();
+    } else {
+      delete api.boxes[api.targetBoxHash];
+      api.blackListHash(api.targetBoxHash);
+      api.targetBoxHash = null;
+    }
+  }
+
   if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
     if (api.targetBoxHash == null && (ship.distance > 900 || !window.settings.killNpcs)) {
       api.collectBox(box.box);
@@ -201,7 +212,10 @@ function logic() {
         }
       } else if (ship.distance > 350 && api.targetBoxHash == null) {
         ship.ship.update();
-        api.move(ship.ship.position.x - MathUtils.random(-100, 100), ship.ship.position.y - MathUtils.random(-100, 100));
+        if ($.now() - api.lastMovement > MathUtils.random(600, 1000)) {
+          api.move(ship.ship.position.x - MathUtils.random(-100, 100), ship.ship.position.y - MathUtils.random(-100, 100));
+          api.lastMovement = $.now();
+        }
         return;
       }
       //Failsafe in case attacking gets stuck

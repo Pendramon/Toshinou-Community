@@ -154,7 +154,7 @@ class StatisticWindow {
 
         $('span:last-child', this.speed).text(this.speedFormat(this.stats.uridium, this.stats.startTime));
       }
-    }), window.globalSettings.timerTick);
+    }, window.globalSettings.timerTick);
   }
 
   speedFormat(uri, startTime) {

@@ -123,6 +123,10 @@ function logic() {
 
   window.minimap.draw();
   
+  if (!window.settings.status) {
+    return
+  }
+
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
@@ -131,10 +135,6 @@ function logic() {
       api.reconnect();
     }
     return;
-  }
-
-  if (!window.settings.status) {
-    return
   }
 
   if (window.settings.flee && window.fleeingFromEnemy) {

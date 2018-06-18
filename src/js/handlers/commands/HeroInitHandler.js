@@ -32,6 +32,15 @@ class HeroInitHandler {
       window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
       window.hero.shd = heroJson["shield"];
 
+      if (window.fleeingFromEnemy) {
+        setTimeout(() => {
+          a.jumpGate();
+          a.isRepairing = true;
+          window.pauseTime = $.now() + 30000; // Add number box for customizability.
+          window.fleeingFromEnemy = false;
+        }, MathUtils.random(1250, 2000));
+      }
+
       f();
       window.initialized = true;
     }

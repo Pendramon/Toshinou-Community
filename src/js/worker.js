@@ -137,8 +137,52 @@ function logic() {
     return;
   }
 
+  if (window.pauseTime && window.pauseTime - $.now() > 0) {
+    return
+  }
+
   if (window.settings.flee && window.fleeingFromEnemy) {
     return
+  }
+
+  if (window.settings.fleeFromEnemy) {
+    if (!window.fleeingFromEnemy) {
+      
+      for (let property in api.ships) {
+        let ship = api.ships[property];
+        if (ship.isNpc && ship.isEnemy) {
+          window.fleeingFromEnemy = true;
+          api.targetShip = null;
+          api.attacking = false;
+          api.triedToLock = false;
+          api.lockedShip = null;
+          api.targetBoxHash = null;
+          let minDist = 999999;
+          
+          api.gates.forEach(gate => {
+            let distGate = gate.distanceTo(window.hero.position);
+            if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
+              let minDist = distGate;
+              window.fleeingGate = gate;
+            }
+          });
+        }
+      }
+    } else {
+      if (window.fleeingGate) {
+        let distGate = window.fleeingGate.distanceTo(window.hero.position);
+        if (distGate > 350) {
+          let x = fleeingGate.position.x + MathUtils.random(-100, 100);
+          let y = fleeingGate.position.y + MathUtils.random(-100, 100);
+          api.move(x, y);
+          api.movementDone = false;
+        } else {
+          api.jumpGate();
+          window.fleeingGate = false;
+        }
+      }
+      return;
+    }
   }
 
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {

@@ -110,8 +110,6 @@ function init() {
 
       if (finalShip != null) {
         api.lockShip(finalShip);
-        api.triedToLock = true;
-        api.targetShip = finalShip;
       }
     }
   });

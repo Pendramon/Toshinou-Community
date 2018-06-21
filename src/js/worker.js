@@ -280,11 +280,11 @@ function logic() {
           return;
         }
         if (window.settings.dontCircleWhenHpBelow25Percent && api.targetShip.percentOfHp < 23 && api.targetShip) {
-          let suck = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y);
-          let suckX = Math.sin(suck)*700;
-          let suckY = Math.cos(suck)*700;
-          x = Math.abs(suckX + enemy.x);
-          y = Math.abs(suckY + enemy.y);
+          let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y);
+          let dX = Math.sin(f)*700;
+          let dY = Math.cos(f)*700;
+          x = Math.abs(dX + enemy.x);
+          y = Math.abs(dY + enemy.y);
           api.move(x,y);
           return;
         } 

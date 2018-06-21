@@ -4,7 +4,7 @@ Created by Freshek on 28.11.2017
 
 class HeroUpdateHitpointsHandler {
   static get ID() {
-    return 27795;
+    return 27257;
   }
 
   constructor() {

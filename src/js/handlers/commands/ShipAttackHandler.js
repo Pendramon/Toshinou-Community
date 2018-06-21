@@ -4,7 +4,7 @@ Created by Freshek on 07.10.2017
 
 class ShipAttackHandler {
   static get ID() {
-    return 26034;
+    return 8866;
   }
 
   constructor() {

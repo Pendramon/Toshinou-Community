@@ -279,6 +279,15 @@ function logic() {
           api.move(x, y);
           return;
         }
+        if (window.settings.dontCircleWhenHpBelow25Percent && api.targetShip.percentOfHp < 23 && api.targetShip) {
+          let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y);
+          let dX = Math.sin(f)*700;
+          let dY = Math.cos(f)*700;
+          x = Math.abs(dX + enemy.x);
+          y = Math.abs(dY + enemy.y);
+          api.move(x,y);
+          return;
+        } 
         if (dist > 500 && !api.forceCollecting) {
           api.move(api.targetShip.position.x - MathUtils.random(-100, 100), api.targetShip.position.y - MathUtils.random(-100, 100));
         }

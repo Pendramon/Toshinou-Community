@@ -233,12 +233,11 @@ function logic() {
   }
 
   if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
-    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 || !window.settings.killNpcs)) {
+    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 && box.box.distanceTo(hero.position) < 1200 || !window.settings.killNpcs)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       api.forceCollecting = true;
-    }
-    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
+    } else if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       api.forceCollecting = null;
@@ -264,7 +263,6 @@ function logic() {
         if (dist < 900 && !api.triedToLock) {
           api.lockShip(api.targetShip);
           api.triedToLock = true;
-          api.targetShip = api.targetShip;
         }
         // Failsafe in case attack starts too early
         if (api.lockedShip && ($.now() - api.lockTime > 3000 && $.now() - api.lockTime < 6000) && $.now() - api.lastAttack > 2000 && api.lockedShip.distanceTo(hero.position) < 1000) {

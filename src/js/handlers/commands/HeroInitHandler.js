@@ -38,7 +38,7 @@ class HeroInitHandler {
           a.isRepairing = true;
           window.pauseTime = $.now() + 30000; // Add number box for customizability.
           window.fleeingFromEnemy = false;
-        }, MathUtils.random(1250, 2000));
+        }, MathUtils.random(1850, 2250));
       }
 
       f();

@@ -19,6 +19,7 @@ class HeroInitHandler {
       a.lockedShip = null;
       a.heroDied = false;
       a.targetBoxHash = null;
+      a.forceCollecting = null;
       Injector.injectScript("window.heroDied = false;");
 
       var heroJson = JSON.parse(e.detail);

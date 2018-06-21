@@ -153,6 +153,7 @@ function logic() {
           api.triedToLock = false;
           api.lockedShip = null;
           api.targetBoxHash = null;
+          api.forceCollecting = null;
           let minDist = 999999;
 
           api.gates.forEach(gate => {
@@ -208,6 +209,7 @@ function logic() {
       api.triedToLock = false;
       api.lockedShip = null;
       api.targetBoxHash = null;
+      api.forceCollecting = null;
       api.move(x, y);
       window.movementDone = false;
       api.isRepairing = true;
@@ -226,17 +228,20 @@ function logic() {
       delete api.boxes[api.targetBoxHash];
       api.blackListHash(api.targetBoxHash);
       api.targetBoxHash = null;
+      api.forceCollecting = null;
     }
   }
 
   if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
-    if (api.targetBoxHash == null && !api.lockedShip && (ship.distance > 900 || !window.settings.killNpcs)) {
+    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 || !window.settings.killNpcs)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
+      api.forceCollecting = true;
     }
-    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 800))) {
+    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
       api.collectBox(box.box);
-      api.targetBoxHash = null;
+      api.targetBoxHash = box.box.hash;
+      api.forceCollecting = null;
       return;
     }
   }
@@ -276,7 +281,7 @@ function logic() {
           api.move(x, y);
           return;
         }
-        if (dist > 500 && api.targetBoxHash == null) {
+        if (dist > 500 && !api.forceCollecting) {
           api.move(api.targetShip.position.x - MathUtils.random(-100, 100), api.targetShip.position.y - MathUtils.random(-100, 100));
         }
       }

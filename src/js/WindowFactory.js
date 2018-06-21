@@ -49,6 +49,7 @@ class WindowFactory {
           api.lockedShip = null;
           window.fleeingFromEnemy = false;
           window.fleeingGate = null;
+          window.pauseTime = null;
         } 
       });
     }

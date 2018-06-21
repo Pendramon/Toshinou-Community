@@ -4,7 +4,7 @@ Created by Freshek on 13.11.2017
 
 class HeroDiedHandler {
   static get ID() {
-    return 6669;
+    return 20873;
   }
 
   constructor() {
@@ -17,6 +17,8 @@ class HeroDiedHandler {
           Injector.injectScript("document.getElementById('preloader').revive(1);");
           window.reviveCount++;
           a.isRepairing = true;
+          window.fleeingGate = null;
+          window.fleeingFromEnemy = null;
         }
       }, 8000);
     }

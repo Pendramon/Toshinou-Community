@@ -43,12 +43,14 @@ class WindowFactory {
           window.settings.status = true;
           $(statusBtn).text('Stop');
           api.targetBoxHash = null;
+          api.forceCollecting = null;
           api.targetShip = null;
           api.attacking = false;
           api.triedToLock = false;
           api.lockedShip = null;
-          window.fleeFromEnemy = null;
-          window.fleeingFromEnemy = null;
+          window.fleeingFromEnemy = false;
+          window.fleeingGate = null;
+          window.pauseTime = null;
         } 
       });
     }

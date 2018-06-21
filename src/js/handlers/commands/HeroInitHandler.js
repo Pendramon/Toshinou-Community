@@ -4,7 +4,7 @@ Created by Freshek on 13.10.2017
 
 class HeroInitHandler {
   static get ID() {
-    return 24873;
+    return 5403;
   }
 
   constructor(f) {
@@ -19,6 +19,7 @@ class HeroInitHandler {
       a.lockedShip = null;
       a.heroDied = false;
       a.targetBoxHash = null;
+      a.forceCollecting = null;
       Injector.injectScript("window.heroDied = false;");
 
       var heroJson = JSON.parse(e.detail);
@@ -31,6 +32,15 @@ class HeroInitHandler {
       window.hero.hp = heroJson[Variables.heroInitHp];
       window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
       window.hero.shd = heroJson["shield"];
+
+      if (window.fleeingFromEnemy) {
+        setTimeout(() => {
+          a.jumpGate();
+          a.isRepairing = true;
+          window.pauseTime = $.now() + 30000; // Add number box for customizability.
+          window.fleeingFromEnemy = false;
+        }, MathUtils.random(1850, 2250));
+      }
 
       f();
       window.initialized = true;

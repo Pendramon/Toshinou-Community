@@ -66,6 +66,10 @@ class Api {
     this.reconnectTime = $.now();
   }
   
+  jumpGate() {
+    Injector.injectScript('document.getElementById("preloader").jumpGate();')
+  }
+
   blackListHash(hash) {
     this._blackListedBoxes.push(hash);
   }

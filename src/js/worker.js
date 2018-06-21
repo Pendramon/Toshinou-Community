@@ -122,7 +122,7 @@ function logic() {
   }
 
   window.minimap.draw();
-  
+
   if (!window.settings.status) {
     return
   }
@@ -137,7 +137,52 @@ function logic() {
     return;
   }
 
-  if (window.settings.flee && window.fleeingFromEnemy) {
+  if (window.pauseTime && window.pauseTime - $.now() > 0) {
+    return
+  }
+
+  if (window.settings.fleeFromEnemy) {
+    if (!window.fleeingFromEnemy) {
+
+      for (let property in api.ships) {
+        let ship = api.ships[property];
+        if (!ship.isNpc && ship.isEnemy) {
+          window.fleeingFromEnemy = true;
+          api.targetShip = null;
+          api.attacking = false;
+          api.triedToLock = false;
+          api.lockedShip = null;
+          api.targetBoxHash = null;
+          api.forceCollecting = null;
+          let minDist = 999999;
+
+          api.gates.forEach(gate => {
+            let distGate = gate.distanceTo(window.hero.position);
+            if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
+              let minDist = distGate;
+              window.fleeingGate = gate;
+            }
+          });
+        }
+      }
+    } else {
+      if (window.fleeingGate) {
+        let distGate = window.fleeingGate.distanceTo(window.hero.position);
+        if (distGate > 350) {
+          let x = fleeingGate.position.x + MathUtils.random(-100, 100);
+          let y = fleeingGate.position.y + MathUtils.random(-100, 100);
+          api.move(x, y);
+          api.movementDone = false;
+        } else {
+          api.jumpGate();
+          window.fleeingGate = false;
+        }
+      }
+      return;
+    }
+  }
+
+  if (window.settings.fleeFromEnemy && window.fleeingFromEnemy) {
     return
   }
 
@@ -164,6 +209,7 @@ function logic() {
       api.triedToLock = false;
       api.lockedShip = null;
       api.targetBoxHash = null;
+      api.forceCollecting = null;
       api.move(x, y);
       window.movementDone = false;
       api.isRepairing = true;
@@ -173,6 +219,7 @@ function logic() {
   let box = api.findNearestBox();
   let ship = api.findNearestShip();
 
+  //Failsafe in case collecting a box gets stuck
   if (api.targetBoxHash && $.now() - api.collectTime > 5000) {
     let box = api.boxes[api.targetBoxHash];
     if (box && box.distanceTo(window.hero.position) > 1000) {
@@ -181,54 +228,65 @@ function logic() {
       delete api.boxes[api.targetBoxHash];
       api.blackListHash(api.targetBoxHash);
       api.targetBoxHash = null;
+      api.forceCollecting = null;
     }
   }
 
   if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
-    if (api.targetBoxHash == null && (ship.distance > 900 || !window.settings.killNpcs)) {
+    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 && box.box.distanceTo(hero.position) < 1200 || !window.settings.killNpcs)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
-    }
-    if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
+      api.forceCollecting = true;
+    } else if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
       api.collectBox(box.box);
-      api.targetBoxHash = null;
+      api.targetBoxHash = box.box.hash;
+      api.forceCollecting = null;
       return;
     }
   }
 
-  if (window.settings.killNpcs && !window.settings.npcDontChase) {
+  //Failsafe in case attacking a npc gets stuck
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 12000) {
+    api.targetShip = null;
+    api.attacking = false;
+    api.triedToLock = false;
+    api.lockedShip = null;
+  }
+
+  if (window.settings.killNpcs) {
     if (ship.ship) {
-      if (ship.distance < 900 && api.targetShip == null) {
-        api.lockShip(ship.ship);
-        api.triedToLock = true;
+      if (!api.targetShip) {
         api.targetShip = ship.ship;
-        return;
-      } else if (api.targetShip != null && api.targetShip != ship.ship && api.targetBoxHash == null) {
-        api.targetShip.update();
-        let dist = api.targetShip.distanceTo(window.hero.position);
-        if (dist > 250) {
-          api.move(api.targetShip.position.x - MathUtils.random(-100, 100), api.targetShip.position.y - MathUtils.random(-100, 100))
+      }
+      if (api.targetShip) {
+        let dist = api.targetShip.distanceTo(hero.position);
+        if (dist < 900 && !api.triedToLock) {
+          api.lockShip(api.targetShip);
+          api.triedToLock = true;
+        }
+        // Failsafe in case attack starts too early
+        if (api.lockedShip && ($.now() - api.lockTime > 3000 && $.now() - api.lockTime < 6000) && $.now() - api.lastAttack > 2000 && api.lockedShip.distanceTo(hero.position) < 1000) {
+          api.startLaserAttack();
+          api.lastAttack = $.now();
+        }
+        if (window.settings.circleNpc && dist < 900 && (!window.settings.dontCircleWhenHpBelow25Percent || api.targetShip.percentOfHp > 25)) {
+          let enemy = api.targetShip.position;
+          let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+          let s = Math.PI / 180;
+          f += s;
+          x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
+          y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
+          api.move(x, y);
           return;
         }
-      } else if (ship.distance > 350 && api.targetBoxHash == null) {
-        ship.ship.update();
-        if ($.now() - api.lastMovement > MathUtils.random(600, 1000)) {
-          api.move(ship.ship.position.x - MathUtils.random(-100, 100), ship.ship.position.y - MathUtils.random(-100, 100));
-          api.lastMovement = $.now();
+        if (dist > 500 && !api.forceCollecting) {
+          api.move(api.targetShip.position.x - MathUtils.random(-100, 100), api.targetShip.position.y - MathUtils.random(-100, 100));
         }
-        return;
-      }
-      //Failsafe in case attacking gets stuck
-      if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 12000) {
-        api.targetShip = null;
-        api.attacking = false;
-        api.triedToLock = false;
-        api.lockedShip = null;
       }
     }
   }
 
-  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
+  if (!api.targetBoxHash && !api.targetShip && window.movementDone && window.settings.moveRandomly) {
     let x = MathUtils.random(100, 20732);
     let y = MathUtils.random(58, 12830);
     api.move(x, y);

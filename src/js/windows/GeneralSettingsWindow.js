@@ -49,15 +49,6 @@ class GeneralSettingsWindow {
           window.settings.killNpcs = this.checked;
         }
       },
-      /*
-      {
-        name: 'npcDontChase',
-        labelText: 'Don\'t chase NPCs (Beta)',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.npcDontChase = this.checked;
-        }
-      },
       {
         name: 'npcCircle',
         labelText: 'Circle (Beta)',
@@ -102,13 +93,13 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'dontCircleWhenHpBelow15Percent',
-        labelText: "Don't circle when HP < 15%",
+        name: 'dontCircleWhenHpBelow25Percent',
+        labelText: "Don't circle when HP < 25%",
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.dontCircleWhenHpBelow15Percent = this.checked;
+          window.settings.dontCircleWhenHpBelow25Percent = this.checked;
         }
-      },*/
+      },
       {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: ' Repair when HP < <span> (10%)</span>',

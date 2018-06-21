@@ -3,7 +3,7 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, /*npcDontChase,*/ status, fleeFromEnemy) {
+  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
     this._moveRandomly = moveRandomly === true;
@@ -14,8 +14,8 @@ class Settings {
     this._autoAttackNpcs = autoAttackNpcs === true;
     this._killNpcs = killNpcs === true;
     this._npcs = [];
-    /*this._npcDontChase = npcDontChase === true;
-    this.npcCircleRadius = 500;*/
+    this.npcCircleRadius = 500;
+    this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
     this.reviveLimit = 5;
     this._status = status === true;
     this._fleeFromEnemy = fleeFromEnemy === true;
@@ -109,11 +109,12 @@ class Settings {
     this._killNpcs = value === true;
   }
 
-  get npcDontChase() {
-    return this._npcDontChase;
+  get dontCircleWhenHpBelow25Percent() {
+    return this._dontCircleWhenHpBelow25Percent;
   }
-  set npcDontChase(value) {
-    this._npcDontChase = value === true;
+
+  set dontCircleWhenHpBelow25Percent(value) {
+    this._dontCircleWhenHpBelow25Percent = value === true;
   }
 
   setNpc(name, val) {

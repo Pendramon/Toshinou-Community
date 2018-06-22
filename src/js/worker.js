@@ -58,8 +58,8 @@ $(document).ready(function () {
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
-  hm.registerEvent("isConnected", new HeroConnectedEventHandler());
-  hm.registerEvent("isDisconnected", new HeroDisconnectedEventHandler());
+  hm.registerEvent("connected", new HeroConnectedEventHandler());
+  hm.registerEvent("disconnected", new HeroDisconnectedEventHandler());
 
   hm.listen();
 });

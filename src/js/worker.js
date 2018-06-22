@@ -93,7 +93,7 @@ function init() {
   $(document).keypress(function keyLock(e) {
     let key = e.key;
 
-    if (key == "x" || key == "z") {
+    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) || key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
       let maxDist = 1000;
       let finDist = 1000000;
       let finalShip;
@@ -110,6 +110,7 @@ function init() {
 
       if (finalShip != null) {
         api.lockShip(finalShip);
+        api.lastAutoLock = $.now();
       }
     }
   });

@@ -233,8 +233,16 @@ function logic() {
     }
   }
 
-  if ((window.settings.collectBoxes || window.settings.collectMaterials) && box.box) {
-    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 && box.box.distanceTo(hero.position) < 1200 || !window.settings.killNpcs)) {
+  if (window.settings.collectMayhem && box.box) {
+    if (api.targetBoxHash == null) {
+      api.collect(box.box);
+      api.targetBoxHash = box.box.hash;
+      return;
+    }
+  }
+
+  if ((window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo) && box.box) {
+    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 && box.box.distanceTo(hero.position) < 2000 || !window.settings.killNpcs)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       api.forceCollecting = true;

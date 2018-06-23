@@ -86,7 +86,7 @@ class Api {
     var minDist = 100000;
     var finalBox;
 
-    if (!window.settings.collectBoxes && !window.settings.collectMaterials)
+    if (!window.settings.collectBoxes && !window.settings.collectMaterials && !window.settings.collectMayhem && !window.settings.collectCargo)
       return {
         box: null,
         distance: minDist
@@ -101,6 +101,12 @@ class Api {
           finalBox = box;
           minDist = dist;
         } else if (window.settings.collectMaterials && box.isMaterial()) {
+          finalBox = box;
+          minDist = dist;
+        } else if (window.settings.collectCargo && box.isCargo()) {
+          finalBox = box;
+          minDist = dist;
+        } else if (window.settings.collectMayhem && box.isMayhem()) {
           finalBox = box;
           minDist = dist;
         }

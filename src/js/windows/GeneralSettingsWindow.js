@@ -26,6 +26,22 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'collectCargo',
+        labelText: 'Collect cargo',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.collectCargo = this.checked;
+        }
+      },
+      {
+        name: 'collectMayhem',
+        labelText: 'Collect mayhem boxes',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.collectMayhem = this.checked;
+        }
+      },
+      {
         name: 'moveRandomly',
         labelText: 'Move randomly',
         appendTo: this.botSettingsWindow,

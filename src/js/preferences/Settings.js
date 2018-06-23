@@ -3,9 +3,11 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent) {
+  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
+    this._collectCargo = collectCargo === true;
+    this._collectMayhem = collectMayhem === true;
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -45,12 +47,29 @@ class Settings {
     this._collectBoxes = value === true;
   }
 
+  get collectCargo() {
+    return this._collectCargo;
+  }
+
+  set collectCargo(value) {
+    this._collectCargo = value === true;
+  }
+
+  
   get collectMaterials() {
     return this._collectMaterials;
   }
 
   set collectMaterials(value) {
     this._collectMaterials = value === true;
+  }
+
+  get collectMayhem() {
+    return this._collectMayhem;
+  }
+
+  set collectMayhem(value) {
+    this._collectMayhem = value === true;
   }
 
   get moveRandomly() {

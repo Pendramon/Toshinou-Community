@@ -32,7 +32,9 @@ class HeroInitHandler {
       window.hero.hp = heroJson[Variables.heroInitHp];
       window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
       window.hero.shd = heroJson["shield"];
-
+      
+      // Jump gate is disabled untill Map Navigator is added.
+      /*
       if (window.fleeingFromEnemy) {
         setTimeout(() => {
           a.jumpGate();
@@ -41,6 +43,7 @@ class HeroInitHandler {
           window.fleeingFromEnemy = false;
         }, MathUtils.random(1850, 2250));
       }
+      */
 
       f();
       window.initialized = true;

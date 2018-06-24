@@ -175,8 +175,12 @@ function logic() {
           api.move(x, y);
           api.movementDone = false;
         } else {
-          api.jumpGate();
-          window.fleeingGate = false;
+          window.pauseTime = $.now() + 30000;
+          window.fleeingFromEnemy = false;
+
+          // Jump gate is disabled untill Map Navigator is added.
+          //api.jumpGate();               
+          //window.fleeingGate = false;
         }
       }
       return;
@@ -233,12 +237,10 @@ function logic() {
     }
   }
 
-  if (window.settings.collectMayhem && box.box) {
-    if (api.targetBoxHash == null) {
-      api.collect(box.box);
-      api.targetBoxHash = box.box.hash;
-      return;
-    }
+  if (window.settings.collectMayhem && box.box && api.targetBoxHash == null && box.box.isMayhem()) {
+    api.collectBox(box.box);
+    api.targetBoxHash = box.box.hash;
+    return;
   }
 
   if ((window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo) && box.box) {

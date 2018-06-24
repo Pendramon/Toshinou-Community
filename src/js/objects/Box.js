@@ -23,7 +23,7 @@ class Box extends Movable {
     return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX"  || type == "YURIS_BONUS_BOX");
   }
 
-  isMayhemBox() {
+  isMayhem() {
     var type = this.type;
     return (type == "MAYHEM_BOX");
   }

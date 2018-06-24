@@ -17,6 +17,13 @@ class ShipRemovedHandler {
         a.attacking = false;
         a.triedToLock = false;
         a.lockedShip = null;
+        a.lastAutoLock = null;
+      } else if (a.lockedShip && id == a.lockedShip.id) {
+        a.targetShip = null;
+        a.attacking = false;
+        a.triedToLock = false;
+        a.lockedShip = null;
+        a.lastAutoLock = null;
       }
 
       var ship = a.ships[id];

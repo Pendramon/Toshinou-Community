@@ -234,13 +234,7 @@ function logic() {
     }
   }
 
-  if (window.settings.collectMayhem && box.box && api.targetBoxHash == null && box.box.isMayhem()) {
-    api.collectBox(box.box);
-    api.targetBoxHash = box.box.hash;
-    return;
-  }
-
-  if (!api.targetBoxHash && box.box && box.box.distanceTo(hero.position) < 2000 && (window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo)) {
+  if (!api.targetBoxHash && box.box && box.box.distanceTo(hero.position) < 2000 && (window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo || window.settings.collectMayhem)) {
     if (!window.settings.killNpcs || api.lockedShip && api.lockedShip.isNpc && api.lockedShip.percentOfHp > 25 && api.lockedShip.distanceTo(box.box.position) < 700 || (ship.ship && ship.distance > 900)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;

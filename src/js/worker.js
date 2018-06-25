@@ -154,7 +154,6 @@ function logic() {
           api.triedToLock = false;
           api.lockedShip = null;
           api.targetBoxHash = null;
-          api.forceCollecting = null;
           let minDist = 999999;
 
           api.gates.forEach(gate => {
@@ -214,7 +213,6 @@ function logic() {
       api.triedToLock = false;
       api.lockedShip = null;
       api.targetBoxHash = null;
-      api.forceCollecting = null;
       api.move(x, y);
       window.movementDone = false;
       api.isRepairing = true;
@@ -233,7 +231,6 @@ function logic() {
       delete api.boxes[api.targetBoxHash];
       api.blackListHash(api.targetBoxHash);
       api.targetBoxHash = null;
-      api.forceCollecting = null;
     }
   }
 
@@ -243,16 +240,10 @@ function logic() {
     return;
   }
 
-  if ((window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo) && box.box) {
-    if (api.forceCollecting == null && !api.lockedShip && (ship.distance > 900 && box.box.distanceTo(hero.position) < 2000 || !window.settings.killNpcs)) {
+  if (!api.targetBoxHash && box.box && box.box.distanceTo(hero.position) < 2000 && (window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo)) {
+    if (!window.settings.killNpcs || api.lockedShip && api.lockedShip.isNpc && api.lockedShip.percentOfHp > 25 && api.lockedShip.distanceTo(box.box.position) < 700 || (ship.ship && ship.distance > 900)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
-      api.forceCollecting = true;
-    } else if (window.settings.killNpcs && (api.lockedShip && api.lockedShip.percentOfHp > 25 && (api.lockedShip.distanceTo(box.box.position) < 700))) {
-      api.collectBox(box.box);
-      api.targetBoxHash = box.box.hash;
-      api.forceCollecting = null;
-      return;
     }
   }
 
@@ -276,11 +267,11 @@ function logic() {
           api.triedToLock = true;
         }
         // Failsafe in case attack starts too early
-        if (api.lockedShip && ($.now() - api.lockTime > 3000 && $.now() - api.lockTime < 6000) && $.now() - api.lastAttack > 2000 && api.lockedShip.distanceTo(hero.position) < 1000) {
+        if (api.lockedShip && ($.now() - api.lockTime > 3000 && $.now() - api.lockTime < 6000) && $.now() - api.lastAttack > 2000 && api.lockedShip.distanceTo(hero.position) < 1200) {
           api.startLaserAttack();
           api.lastAttack = $.now();
         }
-        if (window.settings.circleNpc && dist < 900 && (!window.settings.dontCircleWhenHpBelow25Percent || api.targetShip.percentOfHp > 25)) {
+        if (window.settings.circleNpc && !api.targetBoxHash && dist < 900 && (!window.settings.dontCircleWhenHpBelow25Percent || api.targetShip.percentOfHp > 25)) {
           let enemy = api.targetShip.position;
           let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
           let s = Math.PI / 180;
@@ -290,7 +281,7 @@ function logic() {
           api.move(x, y);
           return;
         }
-        if (dist > 500 && !api.forceCollecting) {
+        if (dist > 500 && !api.targetBoxHash) {
           api.move(api.targetShip.position.x - MathUtils.random(-100, 100), api.targetShip.position.y - MathUtils.random(-100, 100));
         }
       }
@@ -303,5 +294,4 @@ function logic() {
     api.move(x, y);
     window.movementDone = false;
   }
-
 }

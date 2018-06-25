@@ -13,7 +13,6 @@ class AssetRemovedHandler {
 
       if (parsedCmd.hash == a.targetBoxHash) {
         a.targetBoxHash = null;
-        a.forceCollecting = null;
       }
 
       if (a.boxes.hasOwnProperty(parsedCmd.hash)) {

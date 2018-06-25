@@ -85,6 +85,7 @@ class Api {
   findNearestBox() {
     var minDist = 100000;
     var finalBox;
+    var mayhemBoxPresent = false;
 
     if (!window.settings.collectBoxes && !window.settings.collectMaterials && !window.settings.collectMayhem && !window.settings.collectCargo)
       return {
@@ -96,7 +97,16 @@ class Api {
       var box = this.boxes[property];
       var dist = box.distanceTo(window.hero.position);
 
-      if (dist < minDist) {
+      if (window.settings.collectMayhem && box.isMayhem() && !mayhemBoxPresent) {
+        finalBox = box;
+        minDist = dist;
+        mayhemBoxPresent = true;
+      } else if (mayhemBoxPresent && box.isMayhem() && dist < minDist) {
+        finalBox = box;
+        minDist = dist;
+      }
+
+      if (!mayhemBoxPresent && dist < minDist ) {
         if (window.settings.collectBoxes && box.isCollectable()) {
           finalBox = box;
           minDist = dist;
@@ -106,13 +116,10 @@ class Api {
         } else if (window.settings.collectCargo && box.isCargo()) {
           finalBox = box;
           minDist = dist;
-        } else if (window.settings.collectMayhem && box.isMayhem()) {
-          finalBox = box;
-          minDist = dist;
         }
       }
     }
-
+    
     return {
       box: finalBox,
       distance: minDist

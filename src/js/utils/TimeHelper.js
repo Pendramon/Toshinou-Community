@@ -5,7 +5,7 @@ class TimeHelper {
     let diff = {};
 
     diff.days = Math.floor(ms_diff / 1000 / 60 / 60 / 24);
-    ms_diff -= diff.days * 1000 * 60 * 60 * 24;
+    ms_diff -= diff.days * 100 * 60 * 60 * 24;
 
     diff.hours = Math.floor(ms_diff / 1000 / 60 / 60);
     ms_diff -= diff.hours * 1000 * 60 * 60;

@@ -15,7 +15,7 @@ class BoxInitHandler {
         return;
       }
 
-      if (a.isOnBlacklist(box.hash)) {
+      if (a.isBoxOnBlacklist(box.hash)) {
         return;
       }
 

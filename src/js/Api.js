@@ -4,6 +4,7 @@ Created by Freshek on 28.10.2017
 class Api {
   constructor() {
     this._blackListedBoxes = [];
+    this._blackListedNpcs = [];
     this.gates = [];
     this.boxes = {};
     this.ships = {};
@@ -74,8 +75,19 @@ class Api {
     this._blackListedBoxes.push(hash);
   }
 
-  isOnBlacklist(hash) {
+  isBoxOnBlacklist(hash) {
     return this._blackListedBoxes.includes(hash);
+  }
+
+  blackListId(id) {
+    this._blackListedNpcs.push(id);
+    setTimeout(() => {
+      this._blackListedNpcs.shift();
+    }, 120000);
+  }
+
+  isShipOnBlacklist(id) {
+    return this._blackListedNpcs.includes(id);
   }
 
   startLaserAttack() {
@@ -142,7 +154,7 @@ class Api {
       var dist = ship.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked) {
+        if (ship.isNpc && window.settings.getNpc(ship.name) && !this.isShipOnBlacklist(ship.id) && !ship.isAttacked) {
           finalShip = ship;
           minDist = dist;
         }

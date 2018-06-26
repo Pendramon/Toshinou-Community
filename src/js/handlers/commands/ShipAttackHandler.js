@@ -4,7 +4,7 @@ Created by Freshek on 07.10.2017
 
 class ShipAttackHandler {
   static get ID() {
-    return 8866;
+    return 10120;
   }
 
   constructor() {
@@ -15,6 +15,12 @@ class ShipAttackHandler {
       let attackedShipId = shipAttackCmd[Variables.attackedId];
 
       let ship = a.ships[attackedShipId];
+
+      try {
+        if (attackedShipId != window.hero.id && ship.isNpc && attackerId != window.hero.id && a.lockedShip != attackedShipId && !a.isShipOnBlacklist(attackedShipId)) {
+          a.blackListId(attackedShipId);
+        }
+      } catch(e) {}
 
       if (attackerId == window.hero.id) {
         window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);

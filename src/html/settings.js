@@ -47,4 +47,4 @@ function restore() {
 }
 
 $("form").on("submit", saveOptions);
-$(document).ready(restore);
+$(document).ready();

@@ -47,6 +47,7 @@ class WindowFactory {
           api.attacking = false;
           api.triedToLock = false;
           api.lockedShip = null;
+          api.isRepairing = false;
           window.fleeingFromEnemy = false;
           window.fleeingGate = null;
           window.pauseTime = null;

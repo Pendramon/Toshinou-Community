@@ -43,6 +43,7 @@ $(document).ready(function () {
   var hm = new HandlersManager(api);
 
   hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
+  hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
   hm.registerCommand(ShipAttackHandler.ID, new ShipAttackHandler());
   hm.registerCommand(ShipCreateHandler.ID, new ShipCreateHandler());
   hm.registerCommand(ShipMoveHandler.ID, new ShipMoveHandler());

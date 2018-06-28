@@ -45,6 +45,7 @@
       "js/handlers/events/HeroConnectedEventHandler.js",
       "js/handlers/events/HeroDisconnectedEventHandler.js",
       "js/handlers/commands/BoxInitHandler.js",
+      "js/handlers/commands/HeroAttackHandler.js",
       "js/handlers/commands/ShipAttackHandler.js",
       "js/handlers/commands/ShipCreateHandler.js",
       "js/handlers/commands/AssetRemovedHandler.js",

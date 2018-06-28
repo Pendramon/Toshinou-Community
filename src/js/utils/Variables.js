@@ -20,6 +20,10 @@ class Variables {
     return "_-w3W";
   }
 
+  static get heroAttackedId() {
+    return "_-md";
+  }
+
   static get moveDuration() {
     return "_-A4E";
   }

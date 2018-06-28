@@ -75,7 +75,7 @@ function init() {
   window.attackWindow = new AttackWindow();
   window.attackWindow.createWindow();
 
-  window.generalSettingsWindow = new GeneralSettingsWindow();
+  window.gener  alSettingsWindow = new GeneralSettingsWindow();
   window.generalSettingsWindow.createWindow();
 
   window.autolockWindow = new AutolockWindow();
@@ -94,7 +94,8 @@ function init() {
   $(document).keypress(function keyLock(e) {
     let key = e.key;
 
-    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) || key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
+    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) || 
+        key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
       let maxDist = 1000;
       let finDist = 1000000;
       let finalShip;
@@ -103,7 +104,7 @@ function init() {
         let ship = api.ships[property];
         let dist = ship.distanceTo(window.hero.position);
 
-        if ((ship.isNpc && window.settings.lockNpc && key == "x" && dist < maxDist && dist < finDist && (!window.settings.excludeNpcs || window.settings.getNpc(ship.name))) || (!ship.isNpc && ship.isEnemy && window.settings.lockPlayers && key == "z")) {
+        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpc && key == "x" && (!window.settings.excludeNpcs || window.settings.getNpc(ship.name))) || (!ship.isNpc && ship.isEnemy && window.settings.lockPlayers && key == "z"))) {
           finalShip = ship;
           finDist = dist;
         }

@@ -75,7 +75,7 @@ function init() {
   window.attackWindow = new AttackWindow();
   window.attackWindow.createWindow();
 
-  window.gener  alSettingsWindow = new GeneralSettingsWindow();
+  window.generalSettingsWindow = new GeneralSettingsWindow();
   window.generalSettingsWindow.createWindow();
 
   window.autolockWindow = new AutolockWindow();

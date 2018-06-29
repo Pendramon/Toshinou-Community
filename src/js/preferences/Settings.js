@@ -3,11 +3,15 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
+  constructor(collectBoxes, collectMaterials, collectGreenOrGoldBooty, collectBlueBooty, collectRedBooty, collectMasqueBooty, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
     this._collectCargo = collectCargo === true;
     this._collectMayhem = collectMayhem === true;
+    this._collectGreenOrGoldBooty = collectGreenOrGoldBooty = true;
+    this._collectBlueBooty = collectBlueBooty = true;
+    this._collectRedBooty = collectRedBooty = true;
+    this._collectMasqueBooty = collectMasqueBooty = true;
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -54,7 +58,6 @@ class Settings {
   set collectCargo(value) {
     this._collectCargo = value === true;
   }
-
   
   get collectMaterials() {
     return this._collectMaterials;
@@ -70,6 +73,38 @@ class Settings {
 
   set collectMayhem(value) {
     this._collectMayhem = value === true;
+  }
+
+  get collectGreenOrGoldBooty() {
+    return this._collectGreenOrGoldBooty;
+  }
+
+  set collectGreenOrGoldBooty(value) {
+    this._collectGreenOrGoldBooty = value === true;
+  }
+
+  get collectBlueBooty() {
+    return this._collectBlueBooty;
+  }
+
+  set collectBlueBooty(value) {
+    this._collectBlueBooty = value === true;
+  }
+
+  get collectRedBooty() {
+    return this._collectRedBooty;
+  }
+
+  set collectRedBooty(value) {
+    this._collectRedBooty = value === true;
+  }
+
+  get collectMasqueBooty() {
+    return this._collectBlueBooty;
+  }
+
+  set collectMasqueBooty(value) {
+    this._collectBlueBooty = value === true;
   }
 
   get moveRandomly() {

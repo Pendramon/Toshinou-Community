@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Toshinou",
-  "version": "1.0",
+  "name": "Toshinou-Community",
+  "version": "1.0.1",
 
   "description": "Cheat & Tool for DarkOrbit",
 
@@ -31,6 +31,7 @@
       "js/windows/Minimap.js",
       "js/windows/AttackWindow.js",
       "js/windows/GeneralSettingsWindow.js",
+      "js/windows/CollectionWindow.js",
       "js/windows/AutolockWindow.js",
       "js/windows/NpcSettingsWindow.js",
       "js/windows/StatisticWindow.js",
@@ -42,6 +43,7 @@
       "js/handlers/HandlersManager.js",
       "js/handlers/events/MovementDoneEventHandler.js",
       "js/handlers/events/HeroPositionUpdateEventHandler.js",
+      "js/handlers/events/BootyKeyCountUpdateEventHandler.js",
       "js/handlers/events/HeroConnectedEventHandler.js",
       "js/handlers/events/HeroDisconnectedEventHandler.js",
       "js/handlers/commands/BoxInitHandler.js",

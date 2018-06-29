@@ -99,7 +99,7 @@ class Api {
     var finalBox;
     var mayhemBoxPresent = false;
 
-    if (!window.settings.collectBoxes && !window.settings.collectMaterials && !window.settings.collectMayhem && !window.settings.collectCargo)
+    if (!window.settings.collectBoxes && !window.settings.collectMaterials && !window.settings.collectMayhem && !window.settings.collectCargo && !window.settings.collectGreenOrGoldBooty && !window.settings.collectBlueBooty && !window.settings.collectRedBooty && !window.settings.collectMasqueBooty)
       return {
         box: null,
         distance: minDist
@@ -119,13 +119,7 @@ class Api {
       }
 
       if (!mayhemBoxPresent && dist < minDist ) {
-        if (window.settings.collectBoxes && box.isCollectable()) {
-          finalBox = box;
-          minDist = dist;
-        } else if (window.settings.collectMaterials && box.isMaterial()) {
-          finalBox = box;
-          minDist = dist;
-        } else if (window.settings.collectCargo && box.isCargo()) {
+        if (window.settings.collectBoxes && box.isCollectable() || window.settings.collectMaterials && box.isMaterial() || window.settings.collectCargo && box.isCargo() || window.settings.collectGreenOrGoldBooty && box.isGreenOrGoldBooty() && window.greenOrGoldBootyKeyCount > 0 || window.settings.collectBlueBooty && box.isBlueBooty() && window.blueKeyCount > 0 || window.settings.collectRedBooty && box.isRedBooty() && window.redKeyCount > 0 || window.settings.collectMasqueBooty && box.isMasqueBooty() && window.masqueKeyCount > 0) {
           finalBox = box;
           minDist = dist;
         }

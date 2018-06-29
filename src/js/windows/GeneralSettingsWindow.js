@@ -10,38 +10,6 @@ class GeneralSettingsWindow {
     });
 
     let controls = [{
-        name: 'collectBoxes',
-        labelText: 'Collect boxes',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.collectBoxes = this.checked;
-        }
-      },
-      {
-        name: 'collectMaterials',
-        labelText: 'Collect materials',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.collectMaterials = this.checked;
-        }
-      },
-      {
-        name: 'collectCargo',
-        labelText: 'Collect cargo',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.collectCargo = this.checked;
-        }
-      },
-      {
-        name: 'collectMayhem',
-        labelText: 'Collect mayhem boxes',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.collectMayhem = this.checked;
-        }
-      },
-      {
         name: 'moveRandomly',
         labelText: 'Move randomly',
         appendTo: this.botSettingsWindow,

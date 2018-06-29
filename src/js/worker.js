@@ -58,6 +58,7 @@ $(document).ready(function () {
   hm.registerCommand(HeroUpdateHitpointsHandler.ID, new HeroUpdateHitpointsHandler());
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
+  hm.registerEvent("updateBootyKeyCount", new BootyKeyCountUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
   hm.registerEvent("connected", new HeroConnectedEventHandler());
   hm.registerEvent("disconnected", new HeroDisconnectedEventHandler());
@@ -78,16 +79,20 @@ function init() {
   window.generalSettingsWindow = new GeneralSettingsWindow();
   window.generalSettingsWindow.createWindow();
 
-  window.autolockWindow = new AutolockWindow();
-  window.autolockWindow.createWindow();
+  window.collectionWindow = new CollectionWindow();
+  window.collectionWindow.createWindow();
 
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
+
+  window.autolockWindow = new AutolockWindow();
+  window.autolockWindow.createWindow();
 
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
+  Injector.injectScriptFromResource("res/injectables/BootyKeyCountUpdater.js");
 
   window.setInterval(logic, window.globalSettings.timerTick);
 
@@ -224,8 +229,10 @@ function logic() {
   let box = api.findNearestBox();
   let ship = api.findNearestShip();
 
+  if(box.box)
+
   //Failsafe in case collecting a box gets stuck
-  if (api.targetBoxHash && $.now() - api.collectTime > 5000) {
+  if (api.targetBoxHash && (box.box && !box.box.isBooty && $.now() - api.collectTime > 5000 || box.box && box.box.isBooty && $.now() - api.collectTime > 8000 )) {
     let box = api.boxes[api.targetBoxHash];
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
@@ -236,10 +243,16 @@ function logic() {
     }
   }
 
-  if (!api.targetBoxHash && box.box && box.box.distanceTo(hero.position) < 2000 && (window.settings.collectBoxes || window.settings.collectMaterials || window.settings.collectCargo || window.settings.collectMayhem)) {
+  if (!api.targetBoxHash && box.box && !box.box.isBooty && box.box.distanceTo(hero.position) < 2000) {
     if (!window.settings.killNpcs || !ship.ship || api.lockedShip && api.lockedShip.isNpc && api.lockedShip.percentOfHp > 25 && api.lockedShip.distanceTo(box.box.position) < 700 || (!api.lockedShip && ship.distance > 900)) {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
+    }
+  } else if (!api.targetBoxHash && box.box && box.box.isBooty && box.box.distanceTo(hero.position) < 2000) {
+    if (!window.settings.killNpcs || !ship.ship || api.lockedShip && api.lockedShip.isNpc && api.lockedShip.percentOfHp > 25 && api.lockedShip.distanceTo(box.box.position) < 700 || (!api.lockedShip && ship.distance > 900)) {
+      api.collectBox(box.box);
+      api.targetBoxHash = box.box.hash;
+      return;
     }
   }
 

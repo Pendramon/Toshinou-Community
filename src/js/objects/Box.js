@@ -32,4 +32,33 @@ class Box extends Movable {
     var type = this.type;
     return (type == "FROM_SHIP");
   }
+
+  isGreenOrGoldBooty() {
+    let type = this.type;
+    return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD");
+  }
+
+  isBlueBooty() {
+    let type = this.type;
+    return (type == "PIRATE_BOOTY_BLUE");
+  }
+
+  isRedBooty() {
+    let type = this.type;
+    return (type == "PIRATE_BOOTY_RED");
+  }
+
+  isMasqueBooty() {
+    let type = this.type;
+    return (type == "MASQUE_BOOTY_BOX");
+  }
+
+  get isBooty() {
+    let type = this.type;
+    if (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD" || type == "PIRATE_BOOTY_BLUE" || type == "PIRATE_BOOTY_RED" || type == "MASQUE_BOOTY_BOX") {
+      return true;
+    } else { 
+      return false; 
+    }
+  }
 }

@@ -26,6 +26,7 @@ class Api {
     Injector.injectScript(scr);
 
     this.lockTime = $.now();
+    this.lastAttackSinceLock = $.now();
   }
 
   lockNpc(ship) {

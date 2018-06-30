@@ -183,10 +183,10 @@ function logic() {
         } else {
           window.pauseTime = $.now() + 30000;
           window.fleeingFromEnemy = false;
+          window.fleeingGate = null;
 
           // Jump gate is disabled untill Map Navigator is added.
           //api.jumpGate();               
-          //window.fleeingGate = false;
         }
       }
       return;

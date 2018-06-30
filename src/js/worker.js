@@ -165,6 +165,11 @@ function logic() {
 
           api.gates.forEach(gate => {
             let distGate = gate.distanceTo(window.hero.position);
+            if (distGate < 350) {
+              window.pauseTime = $.now() + 30000;
+              window.fleeingFromEnemy = false;
+              window.fleeingGate = null;
+            }
             if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
               let minDist = distGate;
               window.fleeingGate = gate;
@@ -183,10 +188,10 @@ function logic() {
         } else {
           window.pauseTime = $.now() + 30000;
           window.fleeingFromEnemy = false;
+          window.fleeingGate = null;
 
           // Jump gate is disabled untill Map Navigator is added.
           //api.jumpGate();               
-          //window.fleeingGate = false;
         }
       }
       return;

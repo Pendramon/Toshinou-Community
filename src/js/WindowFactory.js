@@ -7,10 +7,11 @@ const HEADER_HEIGHT = 40;
 class WindowFactory {
 
   static createWindow(params) {
+    let manifestData = chrome.runtime.getManifest();
 
     if (!window.mainFrameWindow) {
       window.mainFrameWindow = this.windowsStructure({
-        text: "Windows",
+        text: "Toshiba Community v" + manifestData.version,
         isMain: true
       })[0];
 

@@ -8,10 +8,10 @@ class Settings {
     this._collectMaterials = collectMaterials === true;
     this._collectCargo = collectCargo === true;
     this._collectMayhem = collectMayhem === true;
-    this._collectGreenOrGoldBooty = collectGreenOrGoldBooty = true;
-    this._collectBlueBooty = collectBlueBooty = true;
-    this._collectRedBooty = collectRedBooty = true;
-    this._collectMasqueBooty = collectMasqueBooty = true;
+    this._collectGreenOrGoldBooty = collectGreenOrGoldBooty === true;
+    this._collectBlueBooty = collectBlueBooty === true;
+    this._collectRedBooty = collectRedBooty === true;
+    this._collectMasqueBooty = collectMasqueBooty === true;
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;

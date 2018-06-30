@@ -20,6 +20,9 @@ class ShipSelectedHandler {
 
       if (ship != null) {
         a.lockedShip = ship;
+        window.attackWindow.hp(ship.hp);
+        window.attackWindow.shd(ship.shd);
+        window.attackWindow.targetName(ship.name);
         if ((window.settings.killNpcs && ship.isNpc && window.settings.status) || (window.settings.autoAttack && ship.isEnemy && !ship.isNpc) || (window.settings.autoAttackNpcs && ship.isNpc)) {
           api.startLaserAttack();
           api.attacking = true;

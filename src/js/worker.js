@@ -234,8 +234,6 @@ function logic() {
   let box = api.findNearestBox();
   let ship = api.findNearestShip();
 
-  if(box.box)
-
   //Failsafe in case collecting a box gets stuck
   if (api.targetBoxHash && (box.box && !box.box.isBooty && $.now() - api.collectTime > 5000 || box.box && box.box.isBooty && $.now() - api.collectTime > 8000 )) {
     let box = api.boxes[api.targetBoxHash];

@@ -15,8 +15,12 @@ class ShipDestroyedHandler {
         a.attacking = false;
         a.triedToLock = false;
         a.lockedShip = null;
+        a.lastAutoLock = null;
+        window.attackWindow.hp("0");
+        window.attackWindow.shd("0");
+        window.attackWindow.targetName("None");
       }
-      catch(e) {/*Do nothing*/}
+      catch(e) {/*In case of it being removed already do nothing.*/}
     }
   }
 

@@ -12,11 +12,11 @@ class ShipAttackHandler {
   
         let ship = a.ships[attackedShipId];
   
-        try {
-          if (attackedShipId != window.hero.id && ship.isNpc && attackerId != window.hero.id && a.lockedShip != attackedShipId && !a.isShipOnBlacklist(attackedShipId)) {
-            a.blackListId(attackedShipId);
-          }
-        } catch(e) {}
+        //try {
+        //  if (attackedShipId != window.hero.id && ship.isNpc && attackerId != window.hero.id && a.lockedShip != attackedShipId && !a.isShipOnBlacklist(attackedShipId)) {
+        //    a.blackListId(attackedShipId);
+        //  }
+        //} catch(e) {}
 
       }
     }

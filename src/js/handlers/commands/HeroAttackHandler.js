@@ -29,6 +29,7 @@ class HeroAttackHandler {
 
       if (api.targetShip && attackedShipId == api.targetShip.id) {
         api.lastAttack = $.now();
+        api.lastAttackSinceLock = $.now();
       }
 
       if (ship) {

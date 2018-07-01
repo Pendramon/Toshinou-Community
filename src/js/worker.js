@@ -255,11 +255,12 @@ function logic() {
   }
 
   //Failsafe in case attacking a npc gets stuck
-  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 12000) {
+  if (api.targetShip && $.now() - api.lastAttackSinceLock > 15000) {
     api.targetShip = null;
     api.attacking = false;
     api.triedToLock = false;
     api.lockedShip = null;
+    api.lastAttackSinceLock = $.now();
   }
 
   if (window.settings.killNpcs) {

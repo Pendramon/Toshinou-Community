@@ -71,4 +71,8 @@ class Variables {
   static get gateId() {
     return "_-d4R";
   }
+
+  static get heroPetId() {
+    return "_-R4E"
+  }
 }

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Toshinou-Community-Upstream",
-  "version": "1.0.12",
+  "version": "1.0.13",
 
   "description": "Cheat & Tool for DarkOrbit",
 
@@ -38,6 +38,7 @@
       "js/objects/Movable.js",
       "js/objects/Box.js",
       "js/objects/Hero.js",
+      "js/objects/Pet.js",
       "js/objects/Ship.js",
       "js/objects/Gate.js",
       "js/handlers/HandlersManager.js",
@@ -60,6 +61,7 @@
       "js/handlers/commands/MessagesHandler.js",
       "js/handlers/commands/HeroDiedHandler.js",
       "js/handlers/commands/HeroUpdateHitpointsHandler.js",
+      "js/handlers/commands/HeroPetUpdateHandler.js",
       "js/Api.js",
       "js/ControlFactory.js",
       "js/worker.js"

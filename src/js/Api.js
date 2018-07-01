@@ -120,7 +120,7 @@ class Api {
       }
 
       if (!mayhemBoxPresent && dist < minDist ) {
-        if (window.settings.collectBoxes && box.isCollectable() || window.settings.collectMaterials && box.isMaterial() || window.settings.collectCargo && box.isCargo() || window.settings.collectGreenOrGoldBooty && box.isGreenOrGoldBooty() && window.greenOrGoldBootyKeyCount > 0 || window.settings.collectBlueBooty && box.isBlueBooty() && window.blueKeyCount > 0 || window.settings.collectRedBooty && box.isRedBooty() && window.redKeyCount > 0 || window.settings.collectMasqueBooty && box.isMasqueBooty() && window.masqueKeyCount > 0) {
+        if (window.settings.collectBoxes && box.isCollectable() || window.settings.collectMaterials && box.isMaterial() || window.settings.collectCargo && box.isCargo() || window.settings.collectGreenOrGoldBooty && box.isGreenOrGoldBooty() && window.greenOrGoldBootyKeyCount > 0 || window.settings.collectBlueBooty && box.isBlueBooty() && window.blueBootyKeyCount > 0 || window.settings.collectRedBooty && box.isRedBooty() && window.redBootyKeyCount > 0 || window.settings.collectMasqueBooty && box.isMasqueBooty() && window.masqueBootyKeyCount > 0) {
           finalBox = box;
           minDist = dist;
         }

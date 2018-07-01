@@ -9,11 +9,14 @@ class ShipDestroyedHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      delete a.ships[a.targetShip.id]
-      a.targetShip = null;
-      a.attacking = false;
-      a.triedToLock = false;
-      a.lockedShip = null;
+      try {
+        delete a.ships[a.targetShip.id]
+        a.targetShip = null;
+        a.attacking = false;
+        a.triedToLock = false;
+        a.lockedShip = null;
+      }
+      catch(e) {/*Do nothing*/}
     }
   }
 

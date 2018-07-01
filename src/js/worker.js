@@ -265,6 +265,7 @@ function logic() {
     api.attacking = false;
     api.triedToLock = false;
     api.lockedShip = null;
+    api.lastAttackSinceLock = $.now();
   }
 
   if (window.settings.killNpcs) {

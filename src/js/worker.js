@@ -167,7 +167,6 @@ function logic() {
           api.gates.forEach(gate => {
             let distGate = gate.distanceTo(window.hero.position);
             if (distGate < 350) {
-              window.pauseTime = $.now() + 30000;
               window.fleeingFromEnemy = true;
               window.fleeingGate = gate;
             }

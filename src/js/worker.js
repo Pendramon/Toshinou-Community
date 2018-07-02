@@ -168,8 +168,8 @@ function logic() {
             let distGate = gate.distanceTo(window.hero.position);
             if (distGate < 350) {
               window.pauseTime = $.now() + 30000;
-              window.fleeingFromEnemy = false;
-              window.fleeingGate = null;
+              window.fleeingFromEnemy = true;
+              window.fleeingGate = gate;
             }
             if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
               let minDist = distGate;

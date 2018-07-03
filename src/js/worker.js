@@ -170,7 +170,6 @@ function logic() {
             let distGate = gate.distanceTo(window.hero.position);
             if (distGate < 350) {
               window.fleeingGate = gate;
-              break;
             } else if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
               minDist = distGate;
               window.fleeingGate = gate;

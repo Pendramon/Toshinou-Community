@@ -100,8 +100,8 @@ function init() {
   $(document).keypress(function keyLock(e) {
     let key = e.key;
 
-    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) || 
-        key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
+    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) ||
+      key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
       let maxDist = 1000;
       let finDist = 1000000;
       let finalShip;
@@ -155,7 +155,7 @@ function logic() {
 
       for (let property in api.ships) {
         let ship = api.ships[property];
-        if (!ship.isNpc && ship.isEnemy) {
+        if (!ship.isNpc && ship.isEnemy && api.gates.length > 0) {
           window.fleeingFromEnemy = true;
           api.targetShip = null;
           api.attacking = false;
@@ -163,43 +163,48 @@ function logic() {
           api.lockedShip = null;
           api.targetBoxHash = null;
           let minDist = 999999;
+          let closestGateDist = 999999;
+          let closestGate = null;
 
           api.gates.forEach(gate => {
             let distGate = gate.distanceTo(window.hero.position);
             if (distGate < 350) {
-              window.fleeingFromEnemy = true;
+              window.fleeingGate = gate;
+              break;
+            } else if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
+              minDist = distGate;
               window.fleeingGate = gate;
             }
-            if (distGate < minDist && gate.distanceTo(ship.position) > distGate) {
-              let minDist = distGate;
-              window.fleeingGate = gate;
+            if (distGate < closestGateDist) {
+              closestGate = gate;
             }
           });
+
+          if (!window.fleeingGate && closestGate) {
+            window.fleeingFromEnemy = true;
+            window.fleeingGate = closestGate;
+          }
+
+          break;
         }
       }
-    } else {
-      if (window.fleeingGate) {
-        let distGate = window.fleeingGate.distanceTo(window.hero.position);
-        if (distGate > 350) {
-          let x = fleeingGate.position.x + MathUtils.random(-100, 100);
-          let y = fleeingGate.position.y + MathUtils.random(-100, 100);
-          api.move(x, y);
-          api.movementDone = false;
-        } else {
-          window.pauseTime = $.now() + 30000;
-          window.fleeingFromEnemy = false;
-          window.fleeingGate = null;
+    } else if (window.fleeingGate) {
+      let distGate = window.fleeingGate.distanceTo(window.hero.position);
+      if (distGate > 350) {
+        let x = fleeingGate.position.x + MathUtils.random(-100, 100);
+        let y = fleeingGate.position.y + MathUtils.random(-100, 100);
+        api.move(x, y);
+        api.movementDone = false;
+      } else {
+        window.pauseTime = $.now() + 30000;
+        window.fleeingFromEnemy = false;
+        window.fleeingGate = null;
 
-          // Jump gate is disabled untill Map Navigator is added.
-          //api.jumpGate();               
-        }
+        // Jump gate is disabled untill Map Navigator is added.
+        //api.jumpGate();               
       }
       return;
     }
-  }
-
-  if (window.settings.fleeFromEnemy && window.fleeingFromEnemy) {
-    return
   }
 
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
@@ -235,7 +240,7 @@ function logic() {
   let ship = api.findNearestShip();
 
   //Failsafe in case collecting a box gets stuck
-  if (api.targetBoxHash && (box.box && !box.box.isBooty && $.now() - api.collectTime > 5000 || box.box && box.box.isBooty && $.now() - api.collectTime > 8000 )) {
+  if (api.targetBoxHash && (box.box && !box.box.isBooty && $.now() - api.collectTime > 5000 || box.box && box.box.isBooty && $.now() - api.collectTime > 8000)) {
     let box = api.boxes[api.targetBoxHash];
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();

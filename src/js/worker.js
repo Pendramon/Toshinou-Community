@@ -190,8 +190,8 @@ function logic() {
     } else if (window.fleeingGate) {
       let distGate = window.fleeingGate.distanceTo(window.hero.position);
       if (distGate > 350) {
-        let x = fleeingGate.position.x + MathUtils.random(-100, 100);
-        let y = fleeingGate.position.y + MathUtils.random(-100, 100);
+        let x = window.fleeingGate.position.x + MathUtils.random(-100, 100);
+        let y = window.fleeingGate.position.y + MathUtils.random(-100, 100);
         api.move(x, y);
         api.movementDone = false;
       } else {

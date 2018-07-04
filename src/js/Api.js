@@ -100,7 +100,7 @@ class Api {
     var finalBox;
     var mayhemBoxPresent = false;
 
-    if (!window.settings.collectBoxes && !window.settings.collectMaterials && !window.settings.collectMayhem && !window.settings.collectCargo && !window.settings.collectGreenOrGoldBooty && !window.settings.collectBlueBooty && !window.settings.collectRedBooty && !window.settings.collectMasqueBooty)
+    if (!window.settings.collectBoxes && !window.settings.collectEventBoxes && !window.settings.collectMaterials && !window.settings.collectMayhem && !window.settings.collectCargo && !window.settings.collectGreenOrGoldBooty && !window.settings.collectBlueBooty && !window.settings.collectRedBooty && !window.settings.collectMasqueBooty)
       return {
         box: null,
         distance: minDist
@@ -120,7 +120,7 @@ class Api {
       }
 
       if (!mayhemBoxPresent && dist < minDist ) {
-        if (window.settings.collectBoxes && box.isCollectable() || window.settings.collectMaterials && box.isMaterial() || window.settings.collectCargo && box.isCargo() || window.settings.collectGreenOrGoldBooty && box.isGreenOrGoldBooty() && window.greenOrGoldBootyKeyCount > 0 || window.settings.collectBlueBooty && box.isBlueBooty() && window.blueBootyKeyCount > 0 || window.settings.collectRedBooty && box.isRedBooty() && window.redBootyKeyCount > 0 || window.settings.collectMasqueBooty && box.isMasqueBooty() && window.masqueBootyKeyCount > 0) {
+        if (window.settings.collectBoxes && box.isCollectable() || window.settings.collectEventBoxes && box.isEventBox() || window.settings.collectMaterials && box.isMaterial() || window.settings.collectCargo && box.isCargo() || window.settings.collectGreenOrGoldBooty && box.isGreenOrGoldBooty() && window.greenOrGoldBootyKeyCount > 0 || window.settings.collectBlueBooty && box.isBlueBooty() && window.blueBootyKeyCount > 0 || window.settings.collectRedBooty && box.isRedBooty() && window.redBootyKeyCount > 0 || window.settings.collectMasqueBooty && box.isMasqueBooty() && window.masqueBootyKeyCount > 0) {
           finalBox = box;
           minDist = dist;
         }

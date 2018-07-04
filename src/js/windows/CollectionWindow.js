@@ -18,6 +18,14 @@ class CollectionWindow {
           }
         },
         {
+          name: 'collectEventBoxes',
+          labelText: 'Collect event boxes',
+          appendTo: this.collectionWindow,
+          event: function () {
+            window.settings.collectEventBoxes = this.checked;
+          }
+        },
+        {
           name: 'collectMaterials',
           labelText: 'Collect materials',
           appendTo: this.collectionWindow,

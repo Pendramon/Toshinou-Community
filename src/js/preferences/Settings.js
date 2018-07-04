@@ -3,7 +3,7 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectMaterials, collectGreenOrGoldBooty, collectBlueBooty, collectRedBooty, collectMasqueBooty, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
+  constructor(collectBoxes, collectEventBoxes, collectMaterials, collectGreenOrGoldBooty, collectBlueBooty, collectRedBooty, collectMasqueBooty, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
     this._collectCargo = collectCargo === true;
@@ -25,6 +25,7 @@ class Settings {
     this.reviveLimit = 5;
     this._status = status === true;
     this._fleeFromEnemy = fleeFromEnemy === true;
+    this._collectEventBoxes = collectEventBoxes === true;
   }
 
   get status() {
@@ -49,6 +50,14 @@ class Settings {
 
   set collectBoxes(value) {
     this._collectBoxes = value === true;
+  }
+
+  get collectEventBoxes() {
+    return this._collectEventBoxes;
+  }
+
+  set collectEventBoxes(value) {
+    this._collectEventBoxes = value === true;
   }
 
   get collectCargo() {

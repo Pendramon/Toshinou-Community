@@ -15,12 +15,12 @@ class Box extends Movable {
 
   isMaterial() {
     var type = this.type.toLowerCase();
-    return (type == "mucosum" || type == "prismatium" || type == "scrapium" || type == "boltrum" || type == "aurus_box" || type == "hybrid_alloy_box");
+    return (type == "mucosum" || type == "prismatium" || type == "scrapium" || type == "boltrum" || type == "aurus_box");
   }
 
   isCollectable() {
     var type = this.type;
-    return (type == "BONUS_BOX");
+    return (type == "BONUS_BOX" || type == "HYBRID_ALLOY_BOX");
   }
 
   isEventBox() {

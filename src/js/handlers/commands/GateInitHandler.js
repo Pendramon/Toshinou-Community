@@ -4,7 +4,7 @@ Created by Freshek on 04.11.2017
 
 class GateInitHandler {
   static get ID() {
-    return 10886;
+    return 1382;
   }
 
   constructor() {

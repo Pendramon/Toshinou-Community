@@ -4,7 +4,7 @@ Created by Freshek on 07.10.2017
 
 class HeroAttackHandler {
   static get ID() {
-    return 8866;
+    return 17562;
   }
 
   constructor() {

@@ -20,7 +20,7 @@ class Box extends Movable {
 
   isCollectable() {
     var type = this.type;
-    return (type == "BONUS_BOX");
+    return (type == "BONUS_BOX" || type == "HYBRID_ALLOY_BOX");
   }
 
   isEventBox() {

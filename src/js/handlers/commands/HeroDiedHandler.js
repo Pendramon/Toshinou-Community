@@ -4,7 +4,7 @@ Created by Freshek on 13.11.2017
 
 class HeroDiedHandler {
   static get ID() {
-    return 20873;
+    return 29612;
   }
 
   constructor() {

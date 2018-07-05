@@ -23,6 +23,11 @@ class Box extends Movable {
     return (type == "BONUS_BOX" || type == "HYBRID_ALLOY_BOX");
   }
 
+  isHybridAlloy() {
+    var type = this.type;
+    return (type == "HYBRID_ALLOY_BOX");
+   }
+   
   isEventBox() {
     var type = this.type;
     return (type == "USA_FLAG");

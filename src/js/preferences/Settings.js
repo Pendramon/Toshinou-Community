@@ -3,7 +3,7 @@ Created by Freshek on 14.10.2017
 */
 
 class Settings {
-  constructor(collectBoxes, collectEventBoxes, collectMaterials, collectGreenOrGoldBooty, collectBlueBooty, collectRedBooty, collectMasqueBooty, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
+  constructor(collectBoxes, collectEventBoxes, collectHybridAlloy, collectMaterials, collectGreenOrGoldBooty, collectBlueBooty, collectRedBooty, collectMasqueBooty, moveRandomly, lockNpc, lockPlayers, excludeNpcs, autoAttackNpcs, autoAttack, killNpcs, status, fleeFromEnemy, dontCircleWhenHpBelow25Percent, collectCargo, collectMayhem) {
     this._collectBoxes = collectBoxes === true;
     this._collectMaterials = collectMaterials === true;
     this._collectCargo = collectCargo === true;
@@ -26,6 +26,7 @@ class Settings {
     this._status = status === true;
     this._fleeFromEnemy = fleeFromEnemy === true;
     this._collectEventBoxes = collectEventBoxes === true;
+	this._collectHybridAlloy = collectHybridAlloy === true;
   }
 
   get status() {
@@ -58,6 +59,14 @@ class Settings {
 
   set collectEventBoxes(value) {
     this._collectEventBoxes = value === true;
+  }
+  
+  get collectHybridAlloy() {  
+    return this._collectHybridAlloy;
+  }
+
+  set collectHybridAlloy(value) {
+    this._collectHybridAlloy = value === true;
   }
 
   get collectCargo() {

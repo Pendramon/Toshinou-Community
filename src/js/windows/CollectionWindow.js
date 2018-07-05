@@ -25,6 +25,14 @@ class CollectionWindow {
           window.settings.collectEventBoxes = this.checked;
         }
       },
+	  {
+        name: 'collectHybridAlloy',
+        labelText: 'Collect Hybrid Alloy',
+        appendTo: this.collectionWindow,
+        event: function () {
+          window.settings.collectHybridAlloy = this.checked;
+        }
+      },
       {
         name: 'collectMaterials',
         labelText: 'Collect materials',
